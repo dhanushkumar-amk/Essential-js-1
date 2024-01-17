@@ -156,3 +156,31 @@ themeButton.addEventListener('click', () => {
   localStorage.setItem('selected-theme', getCurrentTheme());
   localStorage.setItem('selected-icon', getCurrentIcon());
 });
+    
+/*===============   ACCORDIAN TOGGLE   ===============*/
+
+
+const accordianItems = document.querySelectorAll('.value__accordian-item');
+
+accordianItems.forEach((item) => {
+  const accordianHeader = item.querySelector('.value__accordian-header');
+
+  accordianHeader.addEventListener('click', () => {
+    const openItem = document.querySelector('.accordian-open');
+    toggleItem(item);
+    if (openItem && openItem !== item) {
+      toggleItem(openItem);
+    }
+  });
+});
+const toggleItem = (item) => {
+  const accordianContent = item.querySelector('.value__accordian-content');
+
+  if (item.classList.contains('accordian-open')) {
+    accordianContent.removeAttribute('style');
+    item.classList.remove('accordian-open');
+  } else {
+    accordianContent.style.height = accordianContent.scrollHeight + 'px';
+    item.classList.add('accordian-open');
+  }
+};
